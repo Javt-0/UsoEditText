@@ -37,9 +37,35 @@ public class MainActivity extends AppCompatActivity {
                     for(int i=0; i<txt1.length() - txt2.length(); i++){
                         txt2 = txt2 + "*";
                     }
+                }else if(txt1.length() < txt2.length()){
+                    for(int i=0; i<txt2.length() - txt1.length(); i++){
+                        txt1 = txt1 + "*";
+                    }
                 }
-                char caracteres1[] = txt1.toCharArray();
-                char caracteres2[] = txt2.toCharArray();
+
+                char carc1 [] = txt1.toCharArray();
+                char carc2 [] = txt2.toCharArray();
+                int ind = carc1.length + carc2.length;
+                char completo [] = new char[ind];
+                boolean cambio = true;
+
+                for(int i=0; i<completo.length; i++){
+                    if(cambio == true){
+                        completo[i] = carc1[i];
+                        cambio = false;
+                    }else if(cambio == false){
+                        completo[i] = carc2[i];
+                        cambio = true;
+                    }
+                }
+                String salida = "";
+                for(int i=0; i<completo.length; i++){
+                    salida = salida + completo[i];
+                }
+
+                mensaje.setText(salida);
+
+
 
             }
         });

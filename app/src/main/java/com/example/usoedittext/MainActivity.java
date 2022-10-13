@@ -31,42 +31,28 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String txt1 = String.valueOf(cajaUno.getText());
                 String txt2 = String.valueOf(cajaDos.getText());
-                int numTxt1 = 0, numTxt2 = 0;
+                String txtFinal = "";
+                int diferencia = 0;
+                char letra1, letra2;
 
                 if(txt1.length() > txt2.length()){
                     for(int i=0; i<txt1.length() - txt2.length(); i++){
-                        txt2 = txt2 + "*";
+                        txt2 += "*";
                     }
-                }else if(txt1.length() < txt2.length()){
+                }else if(txt2.length() > txt1.length()){
                     for(int i=0; i<txt2.length() - txt1.length(); i++){
-                        txt1 = txt1 + "*";
+                        txt1 += "*";
                     }
                 }
 
-                char carc1 [] = txt1.toCharArray();
-                char carc2 [] = txt2.toCharArray();
-                int ind = carc1.length + carc2.length;
-                char completo [] = new char[ind];
-                boolean cambio = true;
-
-                for(int i=0; i<completo.length; i++){
-                    if(cambio == true){
-                        completo[i] = carc1[i];
-                        cambio = false;
-                    }else if(cambio == false){
-                        completo[i] = carc2[i];
-                        cambio = true;
-                    }
+                for (int i=0; i<txt1.length() - 1; i++){
+                    letra1 = txt1.charAt(i);
+                    txtFinal += letra1;
+                    letra2 = txt2.charAt(i);
+                    txtFinal += letra2;
                 }
-                String salida = "";
-                for(int i=0; i<completo.length; i++){
-                    salida = salida + completo[i];
-                }
-
-                mensaje.setText(salida);
-
-
-
+                mensaje.setTextSize(20);
+                mensaje.setText(txtFinal);
             }
         });
 
